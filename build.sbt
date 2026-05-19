@@ -14,7 +14,7 @@ lazy val microservice = Project("cip-credential-risking-proxy", file("."))
     scalacOptions += "-Wconf:src=routes/.*:s",
   )
   .settings(CodeCoverageSettings.settings: _*)
-  .settings(PlayKeys.playDefaultPort := 9970)
+  .settings(PlayKeys.playDefaultPort := 9993)
 
 lazy val it = project
   .enablePlugins(PlayScala)
