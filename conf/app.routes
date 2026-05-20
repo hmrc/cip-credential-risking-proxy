@@ -1,3 +1,3 @@
 # microservice specific routes
 
-GET        /hello-world             uk.gov.hmrc.cipcredentialriskingproxy.controllers.MicroserviceHelloWorldController.hello
+GET         /*path             uk.gov.hmrc.cipcredentialriskingproxy.controllers.ProxyController.proxyNoBody(path)

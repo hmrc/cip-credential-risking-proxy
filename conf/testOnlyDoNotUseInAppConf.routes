@@ -10,4 +10,7 @@
 # Failing to follow this rule may result in test routes deployed in production.
 
 # Add all the application routes to the prod.routes file
+POST       /test-only/cip-credential-risking/*path    uk.gov.hmrc.cipcredentialriskingproxy.testOnly.controllers.TestOnlyProxyController.proxyWithJsonBody(path)
+DELETE     /test-only/cip-credential-risking/*path    uk.gov.hmrc.cipcredentialriskingproxy.testOnly.controllers.TestOnlyProxyController.proxyNoBody(path)
+
 ->         /                          prod.Routes

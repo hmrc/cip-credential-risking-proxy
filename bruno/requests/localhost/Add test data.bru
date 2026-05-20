@@ -1,0 +1,28 @@
+meta {
+  name: Add test data
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:9970/test-only/cip-credential-risking/test-data
+  body: json
+  auth: inherit
+}
+
+headers {
+  User-Agent: test-only
+  X-Correlation-ID: 1234567890
+}
+
+body:json {
+  {
+    "knownUserIdCount": 10,
+    "alertCount": 10
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
