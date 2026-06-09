@@ -15,7 +15,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0
   version: 1.0.0
 paths:
-  /{userId}/score/{sessionId}:
+  /credential-risking-proxy/{userId}/score/{sessionId}:
     get:
       summary: Get credential risk score
       description: |-
