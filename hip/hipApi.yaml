@@ -8,12 +8,12 @@ info:
     
       | Version | Date       | Author         | Description                                           |
       |---------|------------|----------------|-------------------------------------------------------|
-      | 1.0.0   | 27-05-2026 | CIR Team       | Initial draft of the Credential Risking specification |
+      | 1.0.0   | 09-06-2026 | CIR Team       | Initial draft of the Credential Risking specification |
   termsOfService: https://forms.office.com/Pages/ResponsePage.aspx?id=PPdSrBr9mkqOekokjzE54cRTj_GCzpRJqsT4amG0JK1UMkpBS1NUVDhWR041NjJWU0lCMVZUNk5NTi4u
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
-  version: 1.8.0
+  version: 1.0.0
 paths:
   /{userId}/score/{sessionId}:
     get:
