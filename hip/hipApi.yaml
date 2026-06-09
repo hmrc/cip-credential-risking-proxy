@@ -1,0 +1,83 @@
+openapi: 3.0.3
+info:
+  title: Credential Risking
+  description: |-
+    This API enables services to report action taken in response to insights provided.
+    
+    Change Log
+    
+      | Version | Date       | Author         | Description                                           |
+      |---------|------------|----------------|-------------------------------------------------------|
+      | 1.0.0   | 27-05-2026 | CIR Team       | Initial draft of the Credential Risking specification |
+  termsOfService: https://forms.office.com/Pages/ResponsePage.aspx?id=PPdSrBr9mkqOekokjzE54cRTj_GCzpRJqsT4amG0JK1UMkpBS1NUVDhWR041NjJWU0lCMVZUNk5NTi4u
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: 1.8.0
+paths:
+  /{userId}/score/{sessionId}:
+    get:
+      summary: Get credential risk score
+      description: |-
+        This endpoint calculates and returns the credential risk score for a given user identifier. The score is based on various factors such as user behavior, device information, and historical data.
+      operationId: GetScore
+      security:
+        - oAuth2:
+            - read:credential-risking
+      parameters:
+        - in: header
+          required: true
+          name: User-Agent
+          description: A value that identifies the client application.
+          schema:
+            type: string
+            pattern: '.+'
+            example: my-service-name
+        - in: header
+          required: true
+          name: correlationId
+          description: A unique identifier for tracking the request across systems.
+          schema:
+            type: string
+            example: 123e4567-e89b-12d3-a456-426614174000
+        - in: path
+          required: true
+          name: userId
+          description: User identifier
+          schema:
+            type: string
+        - name: sessionId
+          in: path
+          required: true
+          description: Session identifier
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Score calculated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  score:
+                    type: integer
+                    format: int32
+                required:
+                  - score
+        "400":
+          description: Invalid request
+        "404":
+          description: Resource not found
+        "500":
+          description: Internal server error
+components:
+  securitySchemes:
+    oAuth2:
+      type: oauth2
+      description: OAuth2 Client Credentials Flow
+      flows:
+        clientCredentials:
+          tokenUrl: /tokenUrl/not-required
+          scopes:
+            read:credential-risking: Credential Risking Score
