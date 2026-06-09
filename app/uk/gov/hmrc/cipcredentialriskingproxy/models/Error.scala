@@ -28,7 +28,7 @@ case object DownstreamError extends
   Error("REQUEST_DOWNSTREAM", "An unrecoverable error occurred when the downstream service tried to handle the request")
 
 case object MissingCorrelationId extends
-  Error("MISSING_CORRELATION_ID", s"${Constants.xCorrelationId} header is missing from the request")
+  Error("MISSING_CORRELATION_ID", s"${Constants.correlationId} header is missing from the request")
 
 case class AccessForbidden(callingClients: Seq[String], formUrl: String) extends
   Error(

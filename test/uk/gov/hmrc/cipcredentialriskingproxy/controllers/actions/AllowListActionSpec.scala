@@ -67,7 +67,7 @@ class AllowListActionSpec extends BaseSpec with MockAppConfig:
 
           val fakeRequest = baseRequest
             .withHeaders(
-              Constants.xCorrelationId -> "some-correlation-id-from-upstream",
+              Constants.correlationId -> "some-correlation-id-from-upstream",
               HeaderNames.USER_AGENT -> "other-agent"
             )
 
@@ -78,7 +78,7 @@ class AllowListActionSpec extends BaseSpec with MockAppConfig:
             callingClients = Seq("other-agent"),
             formUrl = "/request-access"
           ))
-          headers(result) should contain(Constants.xCorrelationId -> "some-correlation-id-from-upstream")
+          headers(result) should contain(Constants.correlationId -> "some-correlation-id-from-upstream")
 
       "the OriginatorId is set and is on the allow list" should :
 
@@ -110,7 +110,7 @@ class AllowListActionSpec extends BaseSpec with MockAppConfig:
           val fakeRequest = baseRequest
             .withHeaders(
               "OriginatorId" -> "other-agent",
-              Constants.xCorrelationId -> "some-correlation-id-from-upstream",
+              Constants.correlationId -> "some-correlation-id-from-upstream",
               HeaderNames.USER_AGENT -> "other-agent",
               HeaderNames.CONTENT_TYPE -> MimeTypes.JSON
             )
@@ -122,4 +122,4 @@ class AllowListActionSpec extends BaseSpec with MockAppConfig:
             callingClients = Seq("other-agent"),
             formUrl = "/request-access"
           ))
-          headers(result) should contain(Constants.xCorrelationId -> "some-correlation-id-from-upstream")
+          headers(result) should contain(Constants.correlationId -> "some-correlation-id-from-upstream")

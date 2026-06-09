@@ -17,4 +17,4 @@
 package uk.gov.hmrc.cipcredentialriskingproxy.config
 
 object Constants :
-  val xCorrelationId = "X-Correlation-ID"
+  val correlationId = "correlationId"

@@ -31,7 +31,7 @@ class CorrelationIdActionImpl @Inject() (implicit override val executionContext:
     extends CorrelationIdAction {
 
   override def refine[A](request: Request[A]): Future[Either[Result, RequestWithCorrelationId[A]]] =
-    Future.successful(request.headers.get(Constants.xCorrelationId) match {
+    Future.successful(request.headers.get(Constants.correlationId) match {
       case Some(id) if id.trim != "" => Right(RequestWithCorrelationId(id, request))
       case _                         => Left(BadRequest(Json.toJson[Error](MissingCorrelationId)))
     })

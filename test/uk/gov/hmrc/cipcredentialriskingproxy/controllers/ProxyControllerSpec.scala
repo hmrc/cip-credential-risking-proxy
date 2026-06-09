@@ -50,7 +50,7 @@ class ProxyControllerSpec extends BaseSpec with MockDownstreamConnector with One
 
     def fakeRequest: FakeRequest[Unit] = FakeRequest("GET", s"/$userId/score/$sessionId")
       .withBody(())
-      .withHeaders(Constants.xCorrelationId -> "some-correlation-id-from-upstream")
+      .withHeaders(Constants.correlationId -> "some-correlation-id-from-upstream")
 
     "client is NOT authorised" when:
 
