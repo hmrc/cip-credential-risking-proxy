@@ -82,13 +82,16 @@ components:
     UserAgent:
       type: string
       pattern: '.+'
-      example: my-service-name
+      example: 'my-service-name'
     CorrelationId:
       type: string
-      example: 123e4567-e89b-12d3-a456-426614174000
+      pattern: '^[0-9a-fA-F]{8}[-][0-9a-fA-F]{4}[-][0-9a-fA-F]{4}[-][0-9a-fA-F]{4}[-][0-9a-fA-F]{12}$'
+      example: f0bd1f32-de51-45cc-9b18-0520d6e3ab1a
     UserId:
       type: string
-      example: 1234567890
+      pattern: '^[0-9]+$'
+      example: '1234567890'
     SessionId:
       type: string
-      example: abcdef1234567890abcdef1234567890
+      pattern: '^[A-Za-z0-9-]+$'
+      example: 'abcdef1234567890abcdef1234567890'
