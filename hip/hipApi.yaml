@@ -30,28 +30,25 @@ paths:
           name: User-Agent
           description: A value that identifies the client application.
           schema:
-            type: string
-            pattern: '.+'
-            example: my-service-name
+            $ref: "#/components/schemas/UserAgent"
         - in: header
           required: true
           name: correlationId
           description: A unique identifier for tracking the request across systems.
           schema:
-            type: string
-            example: 123e4567-e89b-12d3-a456-426614174000
+            $ref: "#/components/schemas/CorrelationId"
         - in: path
           required: true
           name: userId
           description: User identifier
           schema:
-            type: string
-        - name: sessionId
-          in: path
+            $ref: "#/components/schemas/UserId"
+        - in: path
           required: true
+          name: sessionId
           description: Session identifier
           schema:
-            type: string
+            $ref: "#/components/schemas/SessionId"
       responses:
         "200":
           description: Score calculated successfully
@@ -81,3 +78,17 @@ components:
           tokenUrl: /tokenUrl/not-required
           scopes:
             read:credential-risking: Credential Risking Score
+  schemas:
+    UserAgent:
+      type: string
+      pattern: '.+'
+      example: my-service-name
+    CorrelationId:
+      type: string
+      example: 123e4567-e89b-12d3-a456-426614174000
+    UserId:
+      type: string
+      example: 1234567890
+    SessionId:
+      type: string
+      example: abcdef1234567890abcdef1234567890
