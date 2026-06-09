@@ -85,9 +85,27 @@ To run the integration tests, use the following command:
 ```sbt clean coverage test it/test coverageReport```
 
 ## Running locally
+You'll need Postgres running locally on port `5432` and the dependant service `cip-credential-risking` started via SM2 to run this service locally.
+
+To start Postgres locally, you can use the following Docker command:
+
+```
+docker rm -f credential-risking-postgres;
+docker run --name credential-risking-postgres \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_PASSWORD=postgres \
+  -d -p 5432:5432 postgres
+```
+
+Start the dependant service `cip-credential-risking` locally via SM2:
+
+```sm2 --start CIP_CREDENTIAL_RISKING```
+
 To run the service locally, you can use the following command:
 
 ```./run_local.sh```
+
+This repo also contains Bruno scripts to use for testing this service.
 
 ## Contact
 
