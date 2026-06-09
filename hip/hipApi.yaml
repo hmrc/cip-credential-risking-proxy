@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: Credential Risking
   description: |-
-    This API enables services to report action taken in response to insights provided.
+    This API helps services obtain a credential risk score for a given user identifier. 
     
     Change Log
     
