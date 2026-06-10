@@ -113,16 +113,6 @@ Our preferred contact method is our public channel in HMRC Digital Slack: `#team
 
 If you do not have access to Slack, please email us at `cip-insights-and-reputation-g@digital.hmrc.gov.uk`
 
-## Running locally
-
-### **IMPORTANT** Pre-requisites (dependencies)
-
-To run this service locally and integrated with the `cip-credential-risking` service, you will need to have the following dependencies running locally:
-- A Postgres database running on port `5432` _(via docker is usually easiest)_
-- `cip-credential-risking` started via SM2 _(which will create the DB and tables in postgres)_
-
-Once the dependencies are running, you can use the `./run_local.sh` script provided within **this** repository to start the `cip-credential-risking-proxy` service
-
 ## License
 
 This code is open source software licensed under the [Apache 2.0 License]("http://www.apache.org/licenses/LICENSE-2.0.html").
