@@ -28,12 +28,12 @@ sequenceDiagram
         participant Score as cip-credential-risking<br/>(private zone)
     end
 
-    Consumer->>+Proxy: POST /cip-credential-risking-proxy/:userId/score/:sessionId
+    Consumer->>+Proxy: POST /credential-risking-proxy/:userId/score/:sessionId
     Note over Proxy: Check AllowList & X-Correlation-Id
     break IF Checks Fail
         Proxy->>Consumer: 401 Forbidden
     end
-    Proxy->>+Score: POST /cip-credential-risking/:userId/score/:sessionId
+    Proxy->>+Score: POST /credential-risking/:userId/score/:sessionId
     Score-->>-Proxy: 200 OK (credential risking score response)
     Proxy-->>-Consumer: 200 OK (proxied response)
 ```
@@ -53,14 +53,14 @@ sequenceDiagram
     participant RDS@{ "type" : "database" }
     end
 
-    Consumer->>+Proxy: POST /cip-credential-risking-proxy/test-only/cip-credential-risking/test-data
-    Proxy->>+Score: POST /cip-credential-risking/test-only/test-data
+    Consumer->>+Proxy: POST /credential-risking-proxy/test-only/cip-credential-risking/test-data
+    Proxy->>+Score: POST /credential-risking/test-only/test-data
     Score->>RDS: Create Test Data
     Score-->>-Proxy: 200 OK
     Proxy-->>-Consumer: 200 OK (proxied response + X-Correlation-Id)
 
-    Consumer->>+Proxy: DELETE /cip-credential-risking-proxy/test-only/cip-credential-risking/test-data
-    Proxy->>+Score: DELETE /cip-credential-risking/test-only/test-data
+    Consumer->>+Proxy: DELETE /credential-risking-proxy/test-only/cip-credential-risking/test-data
+    Proxy->>+Score: DELETE /credential-risking/test-only/test-data
     Score->>RDS: Delete Test Data
     Score-->>-Proxy: 204 NOCONTENT
     Proxy-->>-Consumer: 204 NOCONTENT
