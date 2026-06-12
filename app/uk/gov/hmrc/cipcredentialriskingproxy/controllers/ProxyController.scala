@@ -49,4 +49,4 @@ class ProxyController @Inject()(cc: ControllerComponents,
       case t: Throwable =>
         logger.error(s"[proxyRequest] An exception of type '${t.getClass.getSimpleName}' occurred when trying to forward the request")
         InternalServerError(Json.toJson[Error](FailedFuture))
-    }).map(_.withHeaders(Constants.xCorrelationId -> request.correlationId))
+    }).map(_.withHeaders(Constants.correlationId -> request.correlationId))

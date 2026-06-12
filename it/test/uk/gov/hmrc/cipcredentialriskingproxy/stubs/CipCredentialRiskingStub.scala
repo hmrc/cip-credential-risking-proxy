@@ -32,14 +32,14 @@ trait CipCredentialRiskingStub extends BaseStubMapping:
 
     private def baseCredentialRiskingCheck(method: String, path: String): MappingBuilder =
       baseMapping(method, path)
-        .withHeader(Constants.xCorrelationId, equalTo("some-correlation-id-from-upstream"))
+        .withHeader(Constants.correlationId, equalTo("some-correlation-id-from-upstream"))
 
     def success(method: String, path: String)(status: Int, body: JsValue): StubMapping =
       wireMockServer.stubFor(
         baseCredentialRiskingCheck(method, path).willReturn(
           aResponse()
             .withStatus(status)
-            .withHeader(Constants.xCorrelationId, "some-correlation-id-from-upstream")
+            .withHeader(Constants.correlationId, "some-correlation-id-from-upstream")
             .withBody(Json.stringify(body))
         )
       )

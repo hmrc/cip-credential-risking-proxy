@@ -51,7 +51,7 @@ class AllowListActionImpl @Inject()(config: AppConfig,
           Future.successful(
             Forbidden(Json.toJson[Error](AccessForbidden(callingClients, config.accessRequestFormUrl)))
               .withHeaders(Seq(
-                request.headers.get(Constants.xCorrelationId).map(Constants.xCorrelationId -> _)
+                request.headers.get(Constants.correlationId).map(Constants.correlationId -> _)
               ).flatten:_*)
           )
 

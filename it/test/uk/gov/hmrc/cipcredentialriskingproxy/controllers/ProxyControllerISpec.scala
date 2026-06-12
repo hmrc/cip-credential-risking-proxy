@@ -48,7 +48,7 @@ class ProxyControllerISpec extends BaseISpec with CipCredentialRiskingStub:
             .withHttpHeaders(
               HeaderNames.UserAgent -> "unauthorised-agent",
               HeaderNames.ContentType -> MimeTypes.JSON,
-              Constants.xCorrelationId -> "some-correlation-id-from-upstream"
+              Constants.correlationId -> "some-correlation-id-from-upstream"
             )
             .get()
             .futureValue
@@ -67,7 +67,7 @@ class ProxyControllerISpec extends BaseISpec with CipCredentialRiskingStub:
           .withHttpHeaders(
             HeaderNames.UserAgent -> "test-only",
             HeaderNames.ContentType -> MimeTypes.JSON,
-            Constants.xCorrelationId -> "some-correlation-id-from-upstream"
+            Constants.correlationId -> "some-correlation-id-from-upstream"
           )
 
       "downstream connector is successful" when:
@@ -85,7 +85,7 @@ class ProxyControllerISpec extends BaseISpec with CipCredentialRiskingStub:
 
             result.status shouldBe Status.OK
             result.json shouldBe Json.obj("score" -> 42)
-            result.header(Constants.xCorrelationId) shouldBe Some("some-correlation-id-from-upstream")
+            result.header(Constants.correlationId) shouldBe Some("some-correlation-id-from-upstream")
 
       "downstream connector fails" when:
 
@@ -100,7 +100,7 @@ class ProxyControllerISpec extends BaseISpec with CipCredentialRiskingStub:
 
             result.status shouldBe Status.BAD_GATEWAY
             result.json shouldBe Json.toJson[Error](DownstreamError)
-            result.header(Constants.xCorrelationId) shouldBe Some("some-correlation-id-from-upstream")
+            result.header(Constants.correlationId) shouldBe Some("some-correlation-id-from-upstream")
 
 
 

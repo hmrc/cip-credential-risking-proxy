@@ -37,7 +37,7 @@ class CorrelationIdActionSpec extends BaseSpec with MockAppConfig {
 
   def fakeRequest(correlationId: Option[String]): FakeRequest[AnyContentAsEmpty.type] =
     FakeRequest("GET", s"/$userId/score/$sessionId")
-      .withHeaders(Seq(correlationId.map(id => Constants.xCorrelationId -> id)).flatten: _*)
+      .withHeaders(Seq(correlationId.map(id => Constants.correlationId -> id)).flatten: _*)
 
   "CorrelationIdAction" should {
 

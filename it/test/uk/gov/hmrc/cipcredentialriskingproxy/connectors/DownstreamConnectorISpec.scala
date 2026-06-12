@@ -36,7 +36,7 @@ class DownstreamConnectorISpec extends BaseISpec with CipCredentialRiskingStub:
 
     def requestFor(method: String): Request[JsValue] =
       FakeRequest(method, "/cip-credential-risking/get/some/risking/score")
-        .withHeaders(Constants.xCorrelationId -> "some-correlation-id-from-upstream")
+        .withHeaders(Constants.correlationId -> "some-correlation-id-from-upstream")
         .withBody(Json.obj())
 
     Seq(POST, GET, DELETE).foreach { method =>
@@ -50,7 +50,7 @@ class DownstreamConnectorISpec extends BaseISpec with CipCredentialRiskingStub:
 
           status(result) shouldBe Status.OK
           contentAsJson(result) shouldBe Json.obj("score" -> 42)
-          headers(result) should contain(Constants.xCorrelationId -> "some-correlation-id-from-upstream")
+          headers(result) should contain(Constants.correlationId -> "some-correlation-id-from-upstream")
 
       s"downstream connector fails for a $method" should :
 
@@ -68,7 +68,7 @@ class DownstreamConnectorISpec extends BaseISpec with CipCredentialRiskingStub:
 
       "return METHOD_NOT_ALLOWED (405) status" in :
         val unsupportedMethodRequest = FakeRequest("PATCH", "/cip-credential-risking/get/some/risking/score")
-        .withHeaders(Constants.xCorrelationId -> "some-correlation-id-from-upstream")
+        .withHeaders(Constants.correlationId -> "some-correlation-id-from-upstream")
         .withBody(Json.obj())
 
         val result = connector.forward(unsupportedMethodRequest)
