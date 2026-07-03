@@ -9,11 +9,12 @@ info:
       | Version | Date       | Author         | Description                                           |
       |---------|------------|----------------|-------------------------------------------------------|
       | 1.0.0   | 09-06-2026 | CIR Team       | Initial draft of the Credential Risking specification |
+      | 1.1.0   | 09-06-2026 | CIR Team       | Removed implicit 4xx & 5xx responses in favour of HIP adding these automatically |
   termsOfService: https://forms.office.com/Pages/ResponsePage.aspx?id=PPdSrBr9mkqOekokjzE54cRTj_GCzpRJqsT4amG0JK1UMkpBS1NUVDhWR041NjJWU0lCMVZUNk5NTi4u
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
-  version: 1.0.0
+  version: 1.1.0
 paths:
   /credential-risking-proxy/{userId}/score/{sessionId}:
     get:
@@ -62,12 +63,6 @@ paths:
                     format: int32
                 required:
                   - score
-        "400":
-          description: Invalid request
-        "404":
-          description: Resource not found
-        "500":
-          description: Internal server error
 components:
   securitySchemes:
     oAuth2:
